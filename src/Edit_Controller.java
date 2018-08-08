@@ -57,12 +57,6 @@ public class Edit_Controller {
 		this.oldAccount = oldAccount;
 	}
 
-	public Account getOldAccount()
-	{
-		return oldAccount;
-	}
-
-
 	public void startDialogueWindow(String FXMLFile)
 	{
 		try {

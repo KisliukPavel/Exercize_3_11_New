@@ -11,8 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView.TableViewFocusModel;
-
 import java.io.IOException;
 
 public class MainWindow_3_11_Controller {
@@ -56,6 +54,7 @@ public class MainWindow_3_11_Controller {
 
 	@FXML
 	void onMouseClicked_Delete(MouseEvent event) {
+		accCollection.remove((Account)TableView_Table.getSelectionModel().getSelectedItem());
 
 	}
 
