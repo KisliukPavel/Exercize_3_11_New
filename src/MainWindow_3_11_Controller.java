@@ -10,10 +10,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView.TableViewFocusModel;
 
 import java.io.IOException;
 
 public class MainWindow_3_11_Controller {
+
+	@FXML
+	private Button Button_Edit;
+
+	@FXML
+	private Button Button_Delete;
 
 	@FXML
 	private TableView<Account> TableView_Table;
@@ -29,6 +37,8 @@ public class MainWindow_3_11_Controller {
 	private ObservableList<Account> accCollection = FXCollections.observableArrayList();
 
 	private NewAccount_Controller NA_Controller;
+	private Edit_Controller E_Controller;
+
 
 	@FXML
 	void onMouseClicked_NewAccount(MouseEvent event) {
@@ -40,7 +50,8 @@ public class MainWindow_3_11_Controller {
 
 	@FXML
 	void onMouseClicked_Edit(MouseEvent event) {
-
+		startDialogueWindow("EditDialogueWindow.fxml");
+		TableView_Table.refresh();
 	}
 
 	@FXML
@@ -75,7 +86,17 @@ public class MainWindow_3_11_Controller {
 			FXMLLoader fxmlLoaderDialogue = new FXMLLoader();
 			fxmlLoaderDialogue.setLocation(getClass().getResource(FXMLFile));
 			Parent fxmlDialogue = fxmlLoaderDialogue.load();
-			NA_Controller = fxmlLoaderDialogue.getController();
+
+			switch (FXMLFile) {
+				case "NewAccountDialogueWindow.fxml":
+					NA_Controller = fxmlLoaderDialogue.getController();
+					break;
+				case "EditDialogueWindow.fxml":
+					E_Controller = fxmlLoaderDialogue.getController();
+					E_Controller.setMainStage(dialogueStage);
+					E_Controller.setOldAccount(this.TableView_Table.getSelectionModel().getSelectedItem());
+					break;
+			}
 
 			//modality adjustment
 			//-----------------------------------------------
@@ -104,5 +125,17 @@ public class MainWindow_3_11_Controller {
 
 	}
 
-
+	@FXML
+	void initialize() {
+		TableView_Table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+			if (newSelection != null) {
+				Button_Edit.setDisable(false);
+				Button_Delete.setDisable(false);
+			}
+			else {
+				Button_Edit.setDisable(true);
+				Button_Delete.setDisable(true);
+			}
+		});
+	}
 }
