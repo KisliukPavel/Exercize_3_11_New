@@ -33,6 +33,16 @@ public class Account {
 		}
 	}
 
+	public void withdraw(Double withdrawAmount)
+	{
+		if(withdrawAmount < this.balance) {
+			this.balance -= withdrawAmount;
+		}
+		else {
+			System.out.println("Withdrawal amount exceeded account balance.");
+		}
+	}
+
 	public void setBalance(Double balance) {
 		this.balance = balance;
 	}

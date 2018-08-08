@@ -18,21 +18,27 @@ public class Edit_Controller {
 
 	private Stage mainStage;
 	private EditName_Controller EN_Controller;
+	private EditDeposit_Controller ED_Controller;
+	private EditWithdrawal_Controller EW_Controller;
 
 	@FXML
 	void onAction_Change(ActionEvent event) {
 		startDialogueWindow("EditName.fxml");
-		oldAccount.setName(EN_Controller.getNewName());
+		this.oldAccount.setName(EN_Controller.getNewName());
 		this.onAction_Cancel(event);
 	}
 
 	@FXML
 	void onAction_Deposit(ActionEvent event) {
+		startDialogueWindow("EditDeposit.fxml");
+		this.oldAccount.deposit(this.ED_Controller.getDeposit());
 		this.onAction_Cancel(event);
 	}
 
 	@FXML
 	void onAction_Withdrawal(ActionEvent event) {
+		startDialogueWindow("EditWithdrawal.fxml");
+		this.oldAccount.withdraw(EW_Controller.getWithdraw());
 		this.onAction_Cancel(event);
 	}
 
@@ -78,12 +84,18 @@ public class Edit_Controller {
 			switch (FXMLFile) {
 				case "EditName.fxml":
 					this.EN_Controller = fxmlLoaderDialogue.getController();
-					EN_Controller.setTextField_OldName(oldAccount.getName());
+					this.EN_Controller.setTextField_OldName(oldAccount.getName());
 					break;
-				/*case "EditDialogueWindow.fxml":
-					E_Controller = fxmlLoaderDialogue.getController();
-					E_Controller.setMainStage(dialogueStage);
-					break;*/
+				case "EditDeposit.fxml":
+					this.ED_Controller = fxmlLoaderDialogue.getController();
+					break;
+				case "EditWithdrawal.fxml":
+					this.EW_Controller = fxmlLoaderDialogue.getController();
+					this.EW_Controller.setOldBalance(this.oldAccount.getBalance());
+					this.EW_Controller.setTextField_CurrentBalance(this.oldAccount.getBalance().toString());
+					break;
+				default:
+					break;
 			}
 
 			//modality adjustment
@@ -98,7 +110,7 @@ public class Edit_Controller {
 			dialogueStage.showAndWait();
 
 		}catch(IOException e) {
-
+			e.printStackTrace();
 		}
 	}
 

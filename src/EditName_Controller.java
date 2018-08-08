@@ -33,9 +33,10 @@ public class EditName_Controller {
 	}
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-	public String getNewName() //возвращаем данные в зависимости от того, был ли нажат Cancek или OK
+	//------------------------------------------------------------------
+	public String getNewName() //возвращаем данные в зависимости от того, был ли нажат Cancel или OK
 	{
-		if(cancelFlag){
+		if(this.cancelFlag){
 			return this.TextField_OldName.getText();
 		}
 		else {
@@ -53,7 +54,7 @@ public class EditName_Controller {
 	void initialize() {
 		cancelFlag = true;
 		this.TextField_NewName.textProperty().addListener((observable, oldValue, newValue) -> {
-			if(0 == this.TextField_NewName.getText().length()) {
+			if(0 == this.TextField_NewName.getText().length()) { //проверка на пустую строку
 				Button_OK.setDisable(true);
 			}
 			else {

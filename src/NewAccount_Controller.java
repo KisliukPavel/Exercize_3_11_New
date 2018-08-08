@@ -122,7 +122,7 @@ public class NewAccount_Controller {
 
 	private boolean isDigit_TextField (String text)
 	{
-		int countOfPeriods = 0;
+		int countOfPeriods = 0;//количество точек
 		char[] chArr = text.toCharArray();
 		for(char ch : chArr) {
 			if(!(Character.isDigit(ch))) {
@@ -134,6 +134,7 @@ public class NewAccount_Controller {
 				}
 			}
 		}
+		//если количество точек больше 1 - это не число
 		return (countOfPeriods <= 1);
 	}
 
