@@ -87,7 +87,7 @@ public class MainWindow_3_11_Controller {
 			Stage dialogueStage = new Stage();
 			dialogueStage.setResizable(false);
 			dialogueStage.sizeToScene();
-			dialogueStage.setTitle(FXMLFile);
+			dialogueStage.setTitle(FXMLFile.substring(0, FXMLFile.length() - 5));
 			dialogueStage.centerOnScreen();
 
 			//FXML adjustment
