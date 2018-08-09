@@ -41,7 +41,7 @@ public class MainWindow_3_11_Controller {
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	@FXML
 	void onMouseClicked_NewAccount(MouseEvent event) {
-		event.consume();
+		//event.consume();
 		startDialogueWindow("NewAccountDialogueWindow.fxml");
 		if(!(NA_Controller.isCancelPressed())) {
 			setNewAccount(NA_Controller.getNameTextField(), NA_Controller.getBalanceTextField());
@@ -75,7 +75,7 @@ public class MainWindow_3_11_Controller {
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 	//------------------------------------------------------------------
-	void setMainStage(Stage mainStage) {
+	public void setMainStage(Stage mainStage) {
 		this.mainStage = mainStage;
 	}
 

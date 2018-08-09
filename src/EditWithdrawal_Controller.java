@@ -42,7 +42,7 @@ public class EditWithdrawal_Controller {
 		this.oldBalance = oldBalance;
 	}
 
-	Double getWithdraw() //возвращаем данные в зависимости от того, был ли нажат Cancel или OK
+	public Double getWithdraw() //возвращаем данные в зависимости от того, был ли нажат Cancel или OK
 	{
 		if(this.cancelFlag){
 			return 0.0;
@@ -52,7 +52,7 @@ public class EditWithdrawal_Controller {
 		}
 	}
 
-	void setTextField_CurrentBalance(String oldName)
+	public void setTextField_CurrentBalance(String oldName)
 	{
 		this.TextField_CurrentBalance.setText(oldName);
 	}

@@ -1,6 +1,3 @@
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 public class Account {
 	private String name; // instance variable
 	private Double balance; // instance variable
@@ -27,13 +24,13 @@ public class Account {
 	}
 
 	// method that deposits (adds) only a valid amount to the balance
-	void deposit(Double depositAmount) {
+	public void deposit(Double depositAmount) {
 		if (depositAmount > 0.0) { // if the depositAmount is valid
 			balance += depositAmount; // add it to the balance
 		}
 	}
 
-	void withdraw(Double withdrawAmount)
+	public void withdraw(Double withdrawAmount)
 	{
 		if(withdrawAmount < this.balance) {
 			this.balance -= withdrawAmount;
@@ -44,8 +41,8 @@ public class Account {
 	}
 
 	// method returns the account balance
-	Double getBalance() {
-		return balance;
+	public Double getBalance() {
+		return this.balance;
 	}
 
 	// method that sets the name
@@ -55,6 +52,6 @@ public class Account {
 
 	// method that returns the name
 	public String getName() {
-		return name;
+		return this.name;
 	}
 }

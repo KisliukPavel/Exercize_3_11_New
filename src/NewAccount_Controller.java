@@ -37,17 +37,17 @@ public class NewAccount_Controller {
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 	//------------------------------------------------------------------
-	String getNameTextField()
+	public String getNameTextField()
 	{
 		return textField_Name.getText();
 	}
 
-	String getBalanceTextField()
+	public String getBalanceTextField()
 	{
 		return textField_Balance.getText();
 	}
 
-	boolean isCancelPressed()
+	public boolean isCancelPressed()
 	{
 		return cancelPressed;
 	}

@@ -56,16 +56,16 @@ public class Edit_Controller {
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 	//------------------------------------------------------------------
-	void setMainStage(Stage mainStage) {
+	public void setMainStage(Stage mainStage) {
 		this.mainStage = mainStage;
 	}
 
-	void setOldAccount(Account oldAccount)
+	public void setOldAccount(Account oldAccount)
 	{
 		this.oldAccount = oldAccount;
 	}
 
-	boolean isCancelPressed()
+	public boolean isCancelPressed()
 	{
 		return cancelPressed;
 	}
