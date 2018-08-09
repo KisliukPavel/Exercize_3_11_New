@@ -27,13 +27,13 @@ public class Account {
 	}
 
 	// method that deposits (adds) only a valid amount to the balance
-	public void deposit(Double depositAmount) {
+	void deposit(Double depositAmount) {
 		if (depositAmount > 0.0) { // if the depositAmount is valid
 			balance += depositAmount; // add it to the balance
 		}
 	}
 
-	public void withdraw(Double withdrawAmount)
+	void withdraw(Double withdrawAmount)
 	{
 		if(withdrawAmount < this.balance) {
 			this.balance -= withdrawAmount;
@@ -44,7 +44,7 @@ public class Account {
 	}
 
 	// method returns the account balance
-	public Double getBalance() {
+	Double getBalance() {
 		return balance;
 	}
 
@@ -57,14 +57,4 @@ public class Account {
 	public String getName() {
 		return name;
 	}
-
-	/*// method returns the account balance
-	public SimpleDoubleProperty getBalanceProperty() {
-		return balance;
-	}
-
-	// method that returns the name
-	public SimpleStringProperty getNameProperty() {
-		return name;
-	}*/
 }

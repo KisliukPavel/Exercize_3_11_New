@@ -37,12 +37,12 @@ public class NewAccount_Controller {
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 	//------------------------------------------------------------------
-	public String getNameTextField()
+	String getNameTextField()
 	{
 		return textField_Name.getText();
 	}
 
-	public String getBalanceTextField()
+	String getBalanceTextField()
 	{
 		return textField_Balance.getText();
 	}

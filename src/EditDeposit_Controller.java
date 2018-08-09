@@ -32,7 +32,7 @@ public class EditDeposit_Controller {
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 	//------------------------------------------------------------------
-	public Double getDeposit()
+	Double getDeposit()
 	{
 		if(cancelFlag){
 			return 0.0;

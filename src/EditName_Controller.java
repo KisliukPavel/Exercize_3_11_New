@@ -35,7 +35,7 @@ public class EditName_Controller {
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 	//------------------------------------------------------------------
-	public String getNewName() //возвращаем данные в зависимости от того, был ли нажат Cancel или OK
+	String getNewName() //возвращаем данные в зависимости от того, был ли нажат Cancel или OK
 	{
 		if(this.cancelFlag){
 			return this.TextField_OldName.getText();
@@ -45,7 +45,7 @@ public class EditName_Controller {
 		}
 	}
 
-	public void setTextField_OldName(String oldName)
+	void setTextField_OldName(String oldName)
 	{
 		this.TextField_OldName.setText(oldName);
 	}
