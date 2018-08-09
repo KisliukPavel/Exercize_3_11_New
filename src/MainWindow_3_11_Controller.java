@@ -30,16 +30,18 @@ public class MainWindow_3_11_Controller {
 	@FXML
 	private TableColumn<Account, Double> TableColumn_Balance;
 
-	private Stage mainStage;
-
-	private ObservableList<Account> accCollection = FXCollections.observableArrayList();
-
+	//------------------------------------------------------------------
+	private Stage mainStage; //данная сцена - главная
+	private ObservableList<Account> accCollection = FXCollections.observableArrayList(); //тут храним аккаунты
 	private NewAccount_Controller NA_Controller;
 	private Edit_Controller E_Controller;
+	private Delete_Controller D_Controller;
+	//------------------------------------------------------------------
 
-
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	@FXML
 	void onMouseClicked_NewAccount(MouseEvent event) {
+		event.consume();
 		startDialogueWindow("NewAccountDialogueWindow.fxml");
 		if(!(NA_Controller.isCancelPressed())) {
 			setNewAccount(NA_Controller.getNameTextField(), NA_Controller.getBalanceTextField());
@@ -48,36 +50,44 @@ public class MainWindow_3_11_Controller {
 
 	@FXML
 	void onMouseClicked_Edit(MouseEvent event) {
+		event.consume();
 		startDialogueWindow("EditDialogueWindow.fxml");
-		TableView_Table.refresh();
+		if(!E_Controller.isCancelPressed()) {
+			TableView_Table.refresh();
+		}
 	}
 
 	@FXML
 	void onMouseClicked_Delete(MouseEvent event) {
-		accCollection.remove((Account)TableView_Table.getSelectionModel().getSelectedItem());
-
+		event.consume();
+		startDialogueWindow("DeleteDialogueWindow.fxml");
+		if(!(D_Controller.isCancelPressed())) {
+			accCollection.remove(TableView_Table.getSelectionModel().getSelectedItem());
+		}
 	}
 
 	@FXML
 	void onMouseClicked_Exit(MouseEvent event) {
+		event.consume();
 		Stage stage = (Stage) TableView_Table.getScene().getWindow();
 		stage.close();
 	}
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-	public void setMainStage(Stage mainStage) {
+	//------------------------------------------------------------------
+	void setMainStage(Stage mainStage) {
 		this.mainStage = mainStage;
 	}
 
-	public void startDialogueWindow(String FXMLFile)
+	private void startDialogueWindow(String FXMLFile)
 	{
 		try {
 			//Stage adjustment
 			//-----------------------------------------------
 			Stage dialogueStage = new Stage();
-			String title = FXMLFile;
 			dialogueStage.setResizable(false);
 			dialogueStage.sizeToScene();
-			dialogueStage.setTitle(title);
+			dialogueStage.setTitle(FXMLFile);
 			dialogueStage.centerOnScreen();
 
 			//FXML adjustment
@@ -95,6 +105,10 @@ public class MainWindow_3_11_Controller {
 					E_Controller.setMainStage(dialogueStage);
 					E_Controller.setOldAccount(this.TableView_Table.getSelectionModel().getSelectedItem());
 					break;
+				case "DeleteDialogueWindow.fxml":
+					D_Controller = fxmlLoaderDialogue.getController();
+				default:
+					break;
 			}
 
 			//modality adjustment
@@ -109,20 +123,21 @@ public class MainWindow_3_11_Controller {
 			dialogueStage.showAndWait();
 
 		}catch(IOException e) {
-
+			e.printStackTrace();
 		}
 	}
 
-	public void setNewAccount(String name, String balance)
+	private void setNewAccount(String name, String balance)
 	{
 		accCollection.add(new Account(name, Double.valueOf(balance)));
 		TableView_Table.setItems(accCollection);
 
 
-		TableColumn_Name.setCellValueFactory(new PropertyValueFactory<Account, String>("name"));
-		TableColumn_Balance.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+		TableColumn_Name.setCellValueFactory(new PropertyValueFactory<>("name"));
+		TableColumn_Balance.setCellValueFactory(new PropertyValueFactory<>("balance"));
 
 	}
+	//------------------------------------------------------------------
 
 	@FXML
 	void initialize() {

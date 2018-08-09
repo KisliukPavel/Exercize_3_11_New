@@ -25,6 +25,7 @@ public class EditDeposit_Controller {
 
 	@FXML
 	void onAction_Cancel(ActionEvent event) {
+		event.consume();
 		Stage stage = (Stage) this.Button_OK.getScene().getWindow();
 		stage.close();
 	}

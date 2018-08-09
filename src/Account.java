@@ -43,10 +43,6 @@ public class Account {
 		}
 	}
 
-	public void setBalance(Double balance) {
-		this.balance = balance;
-	}
-
 	// method returns the account balance
 	public Double getBalance() {
 		return balance;

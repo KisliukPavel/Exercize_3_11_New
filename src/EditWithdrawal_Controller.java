@@ -30,6 +30,7 @@ public class EditWithdrawal_Controller {
 
 	@FXML
 	void OnAction_Cancel(ActionEvent event) {
+		event.consume();
 		Stage stage = (Stage) this.Button_OK.getScene().getWindow();
 		stage.close();
 	}

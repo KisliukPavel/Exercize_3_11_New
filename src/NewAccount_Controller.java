@@ -24,6 +24,7 @@ public class NewAccount_Controller {
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	@FXML
 	void onAction_Cancel(ActionEvent  event) {
+		event.consume();
 		Stage stage = (Stage) textField_Name.getScene().getWindow();
 		stage.close();
 	}

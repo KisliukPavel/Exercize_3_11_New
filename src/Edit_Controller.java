@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class Edit_Controller {
@@ -15,14 +14,18 @@ public class Edit_Controller {
 	private Button Button_Cancel;
 
 	private Account oldAccount;
-
+	//------------------------------------------------------------------
 	private Stage mainStage;
 	private EditName_Controller EN_Controller;
 	private EditDeposit_Controller ED_Controller;
 	private EditWithdrawal_Controller EW_Controller;
+	private boolean cancelPressed = true; //определяет, был ли нажат Cancel
+	//------------------------------------------------------------------
 
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	@FXML
 	void onAction_Change(ActionEvent event) {
+		cancelPressed = false;
 		startDialogueWindow("EditName.fxml");
 		this.oldAccount.setName(EN_Controller.getNewName());
 		this.onAction_Cancel(event);
@@ -30,6 +33,7 @@ public class Edit_Controller {
 
 	@FXML
 	void onAction_Deposit(ActionEvent event) {
+		cancelPressed = false;
 		startDialogueWindow("EditDeposit.fxml");
 		this.oldAccount.deposit(this.ED_Controller.getDeposit());
 		this.onAction_Cancel(event);
@@ -37,6 +41,7 @@ public class Edit_Controller {
 
 	@FXML
 	void onAction_Withdrawal(ActionEvent event) {
+		cancelPressed = false;
 		startDialogueWindow("EditWithdrawal.fxml");
 		this.oldAccount.withdraw(EW_Controller.getWithdraw());
 		this.onAction_Cancel(event);
@@ -44,29 +49,36 @@ public class Edit_Controller {
 
 	@FXML
 	void onAction_Cancel(ActionEvent event) {
+		event.consume();
 		Stage stage = (Stage) this.Button_Cancel.getScene().getWindow();
 		stage.close();
 	}
+	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-	public void setMainStage(Stage mainStage) {
+	//------------------------------------------------------------------
+	void setMainStage(Stage mainStage) {
 		this.mainStage = mainStage;
 	}
 
-	public void setOldAccount(Account oldAccount)
+	void setOldAccount(Account oldAccount)
 	{
 		this.oldAccount = oldAccount;
 	}
 
-	public void startDialogueWindow(String FXMLFile)
+	boolean isCancelPressed()
+	{
+		return cancelPressed;
+	}
+
+	private void startDialogueWindow(String FXMLFile)
 	{
 		try {
 			//Stage adjustment
 			//-----------------------------------------------
 			Stage dialogueStage = new Stage();
-			String title = FXMLFile;
 			dialogueStage.setResizable(false);
 			dialogueStage.sizeToScene();
-			dialogueStage.setTitle(title);
+			dialogueStage.setTitle(FXMLFile);
 			dialogueStage.centerOnScreen();
 
 			//FXML adjustment
@@ -107,5 +119,5 @@ public class Edit_Controller {
 			e.printStackTrace();
 		}
 	}
-
+	//------------------------------------------------------------------
 }
